@@ -33,3 +33,5 @@ services:
         image: containrrr/watchtower
         command: --run-once portainer_ce
 ```
+
+### https://www.simplehomelab.com/watchtower-docker-compose-2024/
