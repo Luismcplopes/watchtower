@@ -11,12 +11,32 @@ $ docker run -d \
 -v /var/run/docker.sock:/var/run/docker.sock \
 containrrr/watchtower
 ```
-## docker-compose.yml
+## docker-compose.yml  
+docker-compose up -d
 ```
-version: "3"
+version: "2.2"
 services:
-  watchtower:
-    image: containrrr/watchtower
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
     volumes:
+      - /path/to/data:/data
       - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 8000:8000
+      - 9000:9000
+    restart: unless-stopped
+```
+
+
+## update-portainer_ce.yaml  
+run
+```
+services:
+    watchtower:
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        image: containrrr/watchtower
+        command: --run-once portainer_ce
 ```
