@@ -12,21 +12,14 @@ $ docker run -d \
 containrrr/watchtower
 ```
 ## docker-compose.yml  
-docker-compose up -d
 ```
-version: "2.2"
+version: "3"
 services:
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    volumes:
-      - /path/to/data:/data
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /etc/localtime:/etc/localtime:ro
-    ports:
-      - 8000:8000
-      - 9000:9000
-    restart: unless-stopped
+    watchtower:
+        container_name: watchtower
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        image: containrrr/watchtower
 ```
 
 
